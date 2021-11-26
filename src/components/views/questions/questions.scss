@@ -1,0 +1,82 @@
+@import "../../common.scss";
+
+.questions {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 2rem;
+  &__timer{
+    justify-content: center;
+  }
+  &_title {
+    @include font-Monserat-30;
+    color: $color-main;
+  }
+  &_img {
+    transition: all 0.5s ease-in-out;
+    height: 40rem;
+    display: flex;
+    justify-content: center;
+    &__img{
+      border-radius: 2rem;
+    }
+  }
+  &_block {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 2rem 10rem;
+    &__answer {
+      display: flex;
+      justify-content: center;
+      width: 48%;
+      @include font-Monserat-24;
+      color: $color-main;
+      cursor: pointer;
+      &:first-of-type {
+        border-bottom: 1px solid $color-main;
+        border-right: 1px solid $color-main;
+      }
+      &:nth-of-type(2) {
+        border-bottom: 1px solid $color-main;
+        border-left: 1px solid $color-main;
+      }
+      &:nth-of-type(3) {
+        border-right: 1px solid $color-main;
+        border-top: 1px solid $color-main;
+      }
+
+      &:last-of-type {
+        border-left: 1px solid $color-main;
+        border-top: 1px solid $color-main;
+      }
+    }
+    .answers__answer:first-of-type {
+      border-bottom: 1px solid $color-main;
+      border-right: 1px solid $color-main;
+    }
+    .answers__answer:nth-of-type(2) {
+      border-bottom: 1 px solid $color-main;
+      border-left: 1 px solid $color-main;
+    }
+    .answers__answer:nth-of-type(3) {
+      border-right: 1 px solid $color-main;
+      border-top: 1 px solid $color-main;
+    }
+
+    .answers__answer:last-of-type {
+      border-left: 1 px solid $color-main;
+      border-top: 1 px solid $color-main;
+    }
+  }
+}
+
+.truth {
+  background-color: $color-answr-true;
+  color: white;
+}
+.lie {
+  background-color: $color-answr-false;
+  color: white;
+}

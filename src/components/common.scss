@@ -1,0 +1,75 @@
+$color-main: #660033;
+$color-answr-true: #00663580;
+$color-answr-false:#660033;
+
+
+@mixin font-Monserat-36 {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2.6rem;
+  line-height: 2.4rem;
+  /* identical to box height */
+
+  text-align: right;
+  text-transform: uppercase;
+}
+@mixin font-Monserat-18 {
+  font-family: Montserrat;
+  font-size: 1.8rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.2rem;
+  letter-spacing: 0em;
+  text-align: left;
+}
+@mixin font-Monserat-14 {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.4rem;
+  line-height: 1.7rem;
+  text-transform: capitalize;
+}
+@mixin font-Monserat-24 {
+  font-family: Montserrat;
+  font-size: 2.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 2.9rem;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin font-Monserat-30 {
+  font-family: Montserrat;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 3.7rem;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+@mixin font-Monserat-72 {
+  font-family: Montserrat;
+  font-size: 7.2rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 8.8rem;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@mixin btn-main {
+  padding: 1%;
+  box-shadow: 1px 6px 11px 1px rgba(0, 0, 0, 0.7);
+  transition: box-shadow 0.5s ease;
+  color: white;
+  background-color: $color-main;
+  @include font-Monserat-36;
+  cursor: pointer;
+}
+@mixin btn-main-hover {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}

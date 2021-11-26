@@ -1,0 +1,51 @@
+@import "../../common.scss";
+
+.content_container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+.painters,
+.pictures {
+  display: flex;
+  justify-content: center;
+  width: 50%;
+}
+
+.settings {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  width: 100%;
+}
+
+.painters_img,
+.pictures_img {
+  display: flex;
+  flex-direction: column-reverse;
+  & span {
+    @include font-Monserat-36;
+    color: $color-main;
+  }
+  text-decoration: none;
+}
+.painters_img:hover > img,
+.pictures_img:hover > img {
+    transform: scale(1.1);
+    transition: all 0.5s ease-in-out;
+}
+
+#btn_settings {
+  box-shadow: 1px 6px 11px 1px rgba(0, 0, 0, 0.7);
+  transition: box-shadow .5s ease;
+  color: white;
+  background-color: $color-main;
+  @include font-Monserat-36;
+  cursor: pointer;
+  padding: 1%;
+
+}
+#btn_settings:hover {
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}

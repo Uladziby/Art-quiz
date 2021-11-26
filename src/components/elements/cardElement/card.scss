@@ -1,0 +1,82 @@
+.card-container {
+  margin: 1%;
+  flex: 1 0 15%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  perspective: 25rem;
+}
+
+@import "../../common.scss";
+.card {
+  transition: all 0.5s ease-in-out;
+  flex: 0 1 20%;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: right;
+  transition: transform 0.5s;
+  box-shadow: 0 0 1.5rem black;
+  filter: grayscale(1);
+  cursor: pointer;
+
+  &_block {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5%;
+    &__title {
+      flex: 5 1 100%;
+      justify-content: center;
+      align-items: center;
+      @include font-Monserat-14;
+      color: $color-main;
+    }
+    &__number {
+      @include font-Monserat-72;
+      color: $color-main;
+      flex: 4 1 65%;
+    }
+    &__score {
+      @include font-Monserat-18;
+      color: $color-main;
+      flex: 1 1 20%;
+    }
+  }
+
+  & > img {
+    width: 100%;
+    
+  }
+
+}
+.card:hover{
+  transform: scale3d(1.1, 1.1, 1.1);
+  filter: grayscale(0);
+}
+
+@keyframes cardAnime {
+  0% {
+    transform: scale(0);
+    opacity: 0.0;
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  
+  80% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.cardAnime, .questions_img__img {
+  animation-name: cardAnime;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+}

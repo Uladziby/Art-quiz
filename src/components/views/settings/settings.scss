@@ -1,0 +1,95 @@
+@import "../../common.scss";
+
+.container__settings {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.settings_head {
+  @include font-Monserat-36;
+  color: $color-main;
+  text-transform: capitalize;
+}
+
+.settings_content {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  &__volume {
+    box-shadow: 0 0 1.5rem black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3%;
+    width: 20%;
+    max-width: 119px;
+    cursor: pointer;
+    &-img {
+    }
+    &-control {
+      display: flex;
+      justify-content: center;
+      padding: 5%;
+    }
+    &-title {
+      @include font-Monserat-36;
+      color: $color-main;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  &__timer {
+    box-shadow: 0 0 1.5rem black;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 3%;
+    width: 20%;
+    max-width: 119px;
+    cursor: pointer;
+    &-title {
+      @include font-Monserat-36;
+      color: $color-main;
+    }
+    &-control {
+      display: flex;
+      justify-content: center;
+      padding: 5%;
+    }
+    &-title {
+      @include font-Monserat-36;
+      color: $color-main;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
+
+.settings_btns {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 5% 0px;
+  &__save,
+  &__default {
+    width: 20%;
+    @include btn-main;
+    @include font-Monserat-18;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+  }
+  &__save,
+  &__default:hover {
+    @include btn-main-hover;
+  }
+}
+
+.sound-volume {
+  border-radius: 3 px;
+  outline: none;
+}
+input[type="range"] {
+  background-color: $color-main;
+}

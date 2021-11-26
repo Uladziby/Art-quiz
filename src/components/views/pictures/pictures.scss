@@ -1,0 +1,30 @@
+@import '../../common.scss';
+
+.picturesView{
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    .pictures_head{
+        display: flex;
+        justify-content: center;
+        &__btnHome{
+            @include btn-main;
+        }
+        &__btnHome:hover{
+            @include btn-main-hover;
+        }
+        &__btnScore{
+            @include btn-main;
+        }
+        &__btnScore:hover{
+            @include btn-main-hover;
+        }
+    }
+    .pictures_categories{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}

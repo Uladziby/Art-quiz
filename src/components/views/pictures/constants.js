@@ -18,5 +18,5 @@ export const arrCategories = [
 export const QUESTION_PICTURES = 'Who is the author of this picture ?'
 
 export const settings = {
- volume : 0  ,timer : false
+ volume : 0  ,timer : true
 }

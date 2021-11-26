@@ -4,6 +4,7 @@ import { shuffleAnswers } from "../pictures/commonFunc";
 import { getRandomAuthor } from "../../../api/api";
 import { Popup } from "../popup/popupElement";
 import timerImg from"../../../assets/timer_picture.svg";
+import { Timer } from "../../elements/Timer";
 
 
 export class Question {
@@ -22,20 +23,19 @@ export class Question {
     this.status = false;
     this.numOfTruth = 0;
     //Timer
-    this.timerContainer = new BaseComponent(this.parentElem, "div", ["questions__timer"], "", "timer");
+    this.timerContainer = new BaseComponent(this.parentElem, "div", ["questions__timer"]);
     this.settingsTimer = JSON.parse(localStorage.getItem("settings"));
     this.settingsTimer.timer ? (this.timerContainer.element.style.display = "flex") : (this.timerContainer.element.style.display = "none");
     this.timerImg = new BaseComponent(this.timerContainer.element,'img',['questions__timer_img'])
     this.timerImg.element.src = `${timerImg}`;
-    this.timerTime = new BaseComponent (this.timerContainer.element, 'div') 
+    this.timerNum = new BaseComponent (this.timerContainer.element, 'div',['questions__timer_time']);
 
     this.containerImg = new BaseComponent(this.parentElem, "div", ["questions_img"]);
     this.img = new BaseComponent(this.containerImg.element, "img", ["questions_img__img"]);
     this.blockAnswers = new BaseComponent(this.parentElem, "div", ["questions_block"]);
 
     this.FuncActivePopup = this.activePopup.bind(this.popupIsActive);
-
-    //this.FuncNextQuestion = this.nextQuestion.bind(this.img, this.blockAnswers);
+    this.Timer = new Timer(this.timerNum.element);
     this.nextQuestion();
   }
 
@@ -50,7 +50,9 @@ export class Question {
     this.blockAnswers.element.innerHTML = "";
     this.setAnswers();
     this.setImage();
+    this.Timer.start();
   }
+
 
   async setImage() {
     try {
@@ -80,6 +82,7 @@ export class Question {
   }
 
   checkAnswer(element) {
+    //this.Timer.restart();
     const targetElem = element.innerText;
     if (targetElem === this.objRightAnsw[this.indexCurrentQuestion].author) {
       element.classList.add("truth");

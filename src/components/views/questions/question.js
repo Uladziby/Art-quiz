@@ -3,15 +3,15 @@ import { getImage } from "../../../api/api";
 import { shuffleAnswers } from "../pictures/commonFunc";
 import { getRandomAuthor } from "../../../api/api";
 import { Popup } from "../popup/popupElement";
-import timerImg from"../../../assets/timer_picture.svg";
+import timerImg from "../../../assets/timer_picture.svg";
 import { Timer } from "../../elements/Timer";
 
+const TIME_BETWEEN_QUESTIONS = 3000;
 
 export class Question {
   constructor(parentElem, objRightAnsw) {
     this.indexCurrentQuestion = 0;
     const { author, name, year, imageNum } = objRightAnsw[this.indexCurrentQuestion];
-    console.log(objRightAnsw, objRightAnsw[this.indexCurrentQuestion]);
     this.parentElem = parentElem;
     this.objRightAnsw = objRightAnsw;
     this.author = author;
@@ -22,37 +22,46 @@ export class Question {
     this.popupIsActive = false;
     this.status = false;
     this.numOfTruth = 0;
+    this.options = { cb: this.nextQuestion.bind(this) };
+    this.popup = new Popup(this.appElem, this.options);
+    this.popup.dataQuestion = this.objRightAnsw[this.indexCurrentQuestion];
+
     //Timer
     this.timerContainer = new BaseComponent(this.parentElem, "div", ["questions__timer"]);
     this.settingsTimer = JSON.parse(localStorage.getItem("settings"));
     this.settingsTimer.timer ? (this.timerContainer.element.style.display = "flex") : (this.timerContainer.element.style.display = "none");
-    this.timerImg = new BaseComponent(this.timerContainer.element,'img',['questions__timer_img'])
+    this.timerImg = new BaseComponent(this.timerContainer.element, "img", ["questions__timer_img"]);
     this.timerImg.element.src = `${timerImg}`;
-    this.timerNum = new BaseComponent (this.timerContainer.element, 'div',['questions__timer_time']);
+    this.timerNum = new BaseComponent(this.timerContainer.element, "div", ["questions__timer_time"]);
+    this.Timer = new Timer(this.timerNum.element);
+    this.Timer.stop.bind(this);
 
     this.containerImg = new BaseComponent(this.parentElem, "div", ["questions_img"]);
     this.img = new BaseComponent(this.containerImg.element, "img", ["questions_img__img"]);
     this.blockAnswers = new BaseComponent(this.parentElem, "div", ["questions_block"]);
 
-    this.FuncActivePopup = this.activePopup.bind(this.popupIsActive);
-    this.Timer = new Timer(this.timerNum.element);
     this.nextQuestion();
   }
 
-
   nextQuestion() {
-    console.log(this.indexCurrentQuestion, this.objRightAnsw);
-    if (this.indexCurrentQuestion === this.objRightAnsw.length - 1) {
-      console.log(localStorage.getItem("scoreRound"), "finish");
-    }
-    this.img.element.style.opacity = 1;
-    this.img.element.innerHTML = "";
-    this.blockAnswers.element.innerHTML = "";
-    this.setAnswers();
-    this.setImage();
-    this.Timer.start();
-  }
+    if (this.indexCurrentQuestion === 10) {
+      this.Timer.stop();
+      alert(`your result is ${localStorage.getItem("scoreRound")}/10`);
+      document.querySelector(".cover").remove();
+      location.hash = "#home";
+    } else {
+      this.img.element.innerHTML = "";
+      this.blockAnswers.element.innerHTML = "";
+      this.imageNum = this.objRightAnsw[this.indexCurrentQuestion].imageNum;
 
+      if (this.settingsTimer.timer) {
+        this.Timer.start(this.objRightAnsw[this.indexCurrentQuestion], this.options);
+      }
+      this.setImage();
+      this.setAnswers();
+      this.indexCurrentQuestion++;
+    }
+  }
 
   async setImage() {
     try {
@@ -61,6 +70,7 @@ export class Question {
       console.log(error, "setImage");
     }
   }
+
   async setAnswers() {
     try {
       this.arrAnswers.length = 0;
@@ -68,12 +78,16 @@ export class Question {
       await this.createRandomAnswers();
       this.arrAnswers.map((item) => {
         let elem = new BaseComponent(this.blockAnswers.element, "div", ["questions_block__answer"], "", `${item}`);
-        elem.element.addEventListener("click", (e) => this.checkAnswer(e.target));
+        elem.element.addEventListener("click", (e) => {
+          this.checkAnswer(e.target);
+          this.Timer.stop();
+        });
       });
     } catch (error) {
-      console.log("setanswers");
+      console.log(error, "setanswers");
     }
   }
+
   async createRandomAnswers() {
     while (this.arrAnswers.length !== 4) {
       this.arrAnswers.push(await getRandomAuthor());
@@ -82,9 +96,8 @@ export class Question {
   }
 
   checkAnswer(element) {
-    //this.Timer.restart();
     const targetElem = element.innerText;
-    if (targetElem === this.objRightAnsw[this.indexCurrentQuestion].author) {
+    if (targetElem === this.objRightAnsw[this.indexCurrentQuestion - 1].author) {
       element.classList.add("truth");
       this.status = true;
       this.numOfTruth++;
@@ -93,26 +106,25 @@ export class Question {
       element.classList.add("lie");
       this.status = false;
     }
-    this.showPopup();
-    this.indexCurrentQuestion++;
-    if (this.indexCurrentQuestion < this.objRightAnsw.length) {
-      this.imageNum = this.objRightAnsw[this.indexCurrentQuestion].imageNum;
-      this.nextQuestion();
-    }
+    setTimeout(() => {
+      if (this.indexCurrentQuestion < this.objRightAnsw.length) {
+        this.popup.init();
+        this.popup.show();
+
+        /*         new Popup(this.options, this.status);
+         */
+      }
+    }, TIME_BETWEEN_QUESTIONS);
   }
   showPopup() {
     this.activePopup(true);
-    this.appka = document.querySelector(".app");
-    this.popup = new Popup(this.appka, this.objRightAnsw[this.indexCurrentQuestion], this.FuncActivePopup, this.status).open();
-  }
-  activePopup(signal) {
-    this.popupIsActive = signal;
+    this.popup.dataQuestion = this.objRightAnsw[this.indexCurrentQuestion];
+
+    this.popup.init();
+    this.popup.show();
   }
 
-  set statusAnswer(status) {
-    this.status = status;
-  }
-  get statusAnswer() {
-    return this.status;
+  destroy() {
+    this.parentElem.destroy();
   }
 }

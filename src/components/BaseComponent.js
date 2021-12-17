@@ -14,7 +14,6 @@ export class BaseComponent {
   }
   setContent(content){
     this.element.innerHTMl=`${content}`;
-    console.log(this.element.innerHTMl)
   }
   destroy() {
     this.element.innerHTML='';

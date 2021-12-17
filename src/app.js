@@ -11,6 +11,8 @@ class App{
         this.content = new ContentElement(this.parentNode);
         this.footer = new Footer(this.parentNode);
         localStorage.setItem("settings", JSON.stringify(settings));
+        localStorage.setItem("scoreRound", 0);
+
     }
   
 }

@@ -15,8 +15,9 @@ export const arrCategories = [
   "set 11",
   "set 12",
 ];
-export const QUESTION_PICTURES = 'Who is the author of this picture ?'
+export const QUESTION_PICTURES = "Who is the author of this picture ?";
 
 export const settings = {
- volume : 0  ,timer : true
-}
+  volume: 0,
+  timer: true,
+};

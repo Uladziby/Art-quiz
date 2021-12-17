@@ -8,7 +8,7 @@ export class ContentElement extends BaseComponent {
     this.containerContent = new BaseComponent(this.parentElement, "div", ["content_container"], "");
     this.router = new Router(this.containerContent);
 
-    location.hash = '#home';
+    location.hash = "#home";
     this.startView = this.router.updateLocation(window.location.hash);
 
     window.addEventListener("hashchange", () => {
@@ -18,4 +18,3 @@ export class ContentElement extends BaseComponent {
     });
   }
 }
-

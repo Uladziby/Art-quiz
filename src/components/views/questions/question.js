@@ -6,7 +6,7 @@ import { Popup } from "../popup/popupElement";
 import timerImg from "../../../assets/timer_picture.svg";
 import { Timer } from "../../elements/Timer";
 
-const TIME_BETWEEN_QUESTIONS = 3000;
+const TIME_BETWEEN_QUESTIONS = 5000;
 
 export class Question {
   constructor(parentElem, objRightAnsw) {

@@ -22,10 +22,10 @@ export class QuestionsView extends BaseComponent {
     const res = await fetch("../../../inputDate/imgs.json");
     const result = await res.json();
     this.arrQuestions = paginate(result, NUMBER_QUESTIONS, index);
-    this.startQuiz(this.arrQuestions)
+    this.startQuiz(this.arrQuestions);
   }
 
-  startQuiz(arr){
-    new Question(this.element, arr)
+  startQuiz(arr) {
+    new Question(this.element, arr);
   }
 }

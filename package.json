@@ -10,7 +10,7 @@
     "start": "webpack serve --mode development --open",
     "prettier": "prettier",
     "format:all": "prettier --write \"src/**/*.js\"",
-    "lint": "eslint src"
+    "lint": "eslint . --ext .js"
   },
   "keywords": [],
   "author": "",
@@ -27,9 +27,14 @@
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.4.0",
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.0.0",
     "file-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.4.2",
     "node-sass": "^6.0.1",
+    "prettier": "2.5.1",
     "resolve-url-loader": "^4.0.0",
     "sass-loader": "^12.2.0",
     "svg-inline-loader": "^0.8.2",
@@ -39,9 +44,9 @@
     "webpack-dev-server": "^4.4.0"
   },
   "dependencies": {
+    "eslint-config-airbnb-base": "^15.0.0",
     "html-loader": "^2.1.2",
     "html-webpack-plugin": "^5.4.0",
-    "normalize.css": "^8.0.1",
-    "prettier": "^2.5.1"
+    "normalize.css": "^8.0.1"
   }
 }

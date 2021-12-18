@@ -1,5 +1,13 @@
 export class BaseComponent {
-  constructor(parentNode = null, tag = "div", className = [], styles = "", content = "", id = "") {
+  constructor(
+    parentNode = null,
+    tag = "div",
+    className = [],
+    // eslint-disable-next-line no-unused-vars
+    styles = "",
+    content = "",
+    id = ""
+  ) {
     this.parentNode = parentNode;
     this.element = document.createElement(tag);
     this.element.classList.add(...className);
@@ -12,10 +20,10 @@ export class BaseComponent {
   create() {
     this.parentNode.appendChild(this.element);
   }
-  setContent(content){
-    this.element.innerHTMl=`${content}`;
+  setContent(content) {
+    this.element.innerHTMl = `${content}`;
   }
   destroy() {
-    this.element.innerHTML='';
+    this.element.innerHTML = "";
   }
 }

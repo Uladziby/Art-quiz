@@ -5,7 +5,12 @@ export class ContentElement extends BaseComponent {
   constructor(parentElement) {
     super();
     this.parentElement = parentElement;
-    this.containerContent = new BaseComponent(this.parentElement, "div", ["content_container"], "");
+    this.containerContent = new BaseComponent(
+      this.parentElement,
+      "div",
+      ["content_container"],
+      ""
+    );
     this.router = new Router(this.containerContent);
 
     location.hash = "#home";

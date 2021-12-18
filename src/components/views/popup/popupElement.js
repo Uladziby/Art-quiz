@@ -10,15 +10,30 @@ export class Popup extends BaseComponent {
     super(document.getElementById("app"), "div", ["cover", "hidden"]);
     /*  this.appElement = document.getElementById("app");
     this.cover = new BaseComponent(this.appElement, "div", ["cover", "hidden"]) */
-    this.data = { author: this.author, name: this.name, year: this.year, imageNum: this.imageNum };
+    this.data = {
+      author: this.author,
+      name: this.name,
+      year: this.year,
+      imageNum: this.imageNum,
+    };
     this.options = options || function () {};
     this.resultAnswer = resultAnswer;
   }
 
   init() {
     this.popupElement = new BaseComponent(this.element, "div", ["popup"]);
-    this.imgStatus = new ImageElement(this.popupElement.element, 30, 30, `${this.resultAnswer ? correct : wrong}`);
-    this.image = new ImageElement(this.popupElement.element, 180, 180, this.getImage());
+    this.imgStatus = new ImageElement(
+      this.popupElement.element,
+      30,
+      30,
+      `${this.resultAnswer ? correct : wrong}`
+    );
+    this.image = new ImageElement(
+      this.popupElement.element,
+      180,
+      180,
+      this.getImage()
+    );
     this.popupContent = new BaseComponent(
       this.popupElement.element,
       "div",
@@ -63,6 +78,8 @@ export class Popup extends BaseComponent {
   showResult() {
     this.imgStatus.element.remove();
     this.image.element.remove();
-    this.popupContent.element.innerHTML = `<div class="popup_result>${localStorage.getItem("scoreRound")}/10</div>`;
+    this.popupContent.element.innerHTML = `<div class="popup_result>${localStorage.getItem(
+      "scoreRound"
+    )}/10</div>`;
   }
 }

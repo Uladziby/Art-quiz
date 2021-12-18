@@ -11,7 +11,8 @@ const TIME_BETWEEN_QUESTIONS = 5000;
 export class Question {
   constructor(parentElem, objRightAnsw) {
     this.indexCurrentQuestion = 0;
-    const { author, name, year, imageNum } = objRightAnsw[this.indexCurrentQuestion];
+    const { author, name, year, imageNum } =
+      objRightAnsw[this.indexCurrentQuestion];
     this.parentElem = parentElem;
     this.objRightAnsw = objRightAnsw;
     this.author = author;
@@ -27,18 +28,32 @@ export class Question {
     this.popup.dataQuestion = this.objRightAnsw[this.indexCurrentQuestion];
 
     //Timer
-    this.timerContainer = new BaseComponent(this.parentElem, "div", ["questions__timer"]);
+    this.timerContainer = new BaseComponent(this.parentElem, "div", [
+      "questions__timer",
+    ]);
     this.settingsTimer = JSON.parse(localStorage.getItem("settings"));
-    this.settingsTimer.timer ? (this.timerContainer.element.style.display = "flex") : (this.timerContainer.element.style.display = "none");
-    this.timerImg = new BaseComponent(this.timerContainer.element, "img", ["questions__timer_img"]);
+    this.settingsTimer.timer
+      ? (this.timerContainer.element.style.display = "flex")
+      : (this.timerContainer.element.style.display = "none");
+    this.timerImg = new BaseComponent(this.timerContainer.element, "img", [
+      "questions__timer_img",
+    ]);
     this.timerImg.element.src = `${timerImg}`;
-    this.timerNum = new BaseComponent(this.timerContainer.element, "div", ["questions__timer_time"]);
+    this.timerNum = new BaseComponent(this.timerContainer.element, "div", [
+      "questions__timer_time",
+    ]);
     this.Timer = new Timer(this.timerNum.element);
     this.Timer.stop.bind(this);
 
-    this.containerImg = new BaseComponent(this.parentElem, "div", ["questions_img"]);
-    this.img = new BaseComponent(this.containerImg.element, "img", ["questions_img__img"]);
-    this.blockAnswers = new BaseComponent(this.parentElem, "div", ["questions_block"]);
+    this.containerImg = new BaseComponent(this.parentElem, "div", [
+      "questions_img",
+    ]);
+    this.img = new BaseComponent(this.containerImg.element, "img", [
+      "questions_img__img",
+    ]);
+    this.blockAnswers = new BaseComponent(this.parentElem, "div", [
+      "questions_block",
+    ]);
 
     this.nextQuestion();
   }
@@ -55,7 +70,10 @@ export class Question {
       this.imageNum = this.objRightAnsw[this.indexCurrentQuestion].imageNum;
 
       if (this.settingsTimer.timer) {
-        this.Timer.start(this.objRightAnsw[this.indexCurrentQuestion], this.options);
+        this.Timer.start(
+          this.objRightAnsw[this.indexCurrentQuestion],
+          this.options
+        );
       }
       this.setImage();
       this.setAnswers();
@@ -77,7 +95,13 @@ export class Question {
       this.arrAnswers.push(this.objRightAnsw[this.indexCurrentQuestion].author);
       await this.createRandomAnswers();
       this.arrAnswers.map((item) => {
-        let elem = new BaseComponent(this.blockAnswers.element, "div", ["questions_block__answer"], "", `${item}`);
+        let elem = new BaseComponent(
+          this.blockAnswers.element,
+          "div",
+          ["questions_block__answer"],
+          "",
+          `${item}`
+        );
         elem.element.addEventListener("click", (e) => {
           this.checkAnswer(e.target);
           this.Timer.stop();
@@ -97,7 +121,9 @@ export class Question {
 
   checkAnswer(element) {
     const targetElem = element.innerText;
-    if (targetElem === this.objRightAnsw[this.indexCurrentQuestion - 1].author) {
+    if (
+      targetElem === this.objRightAnsw[this.indexCurrentQuestion - 1].author
+    ) {
       element.classList.add("truth");
       this.status = true;
       this.numOfTruth++;

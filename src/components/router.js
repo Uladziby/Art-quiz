@@ -1,6 +1,5 @@
 import { HomeView } from "./views/home/HomeView";
 import { PicturesView } from "./views/pictures/PicturesView";
-import { QuestionsView } from "./views/questions/QuestionsView";
 import { SettingsView } from "../components/views/settings/SettingsView";
 
 export class Router {
@@ -31,7 +30,7 @@ export class Router {
           return new SettingsView(this.parentElement);
         },
       },
-     /*  {
+      /*  {
         name: "#questions",
         component: () => {
           return new QuestionsView(this.parentElement);

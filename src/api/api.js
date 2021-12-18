@@ -5,9 +5,8 @@ export async function getImage(numberOfImage) {
     resp = await fetch(`../inputDate/img/${numberOfImage}.jpg`);
   } catch (e) {
     return console.log("image not found");
-  } finally {
-    return  resp.url;
   }
+    return resp.url;
   
 }
 
@@ -18,7 +17,7 @@ export async function getRandomAuthor() {
     resp = await (await fetch("../../../inputDate/imgs.json")).json();
   } catch (e) {
     return console.log("file not found");
-  } finally {
+  } 
     return resp[randomNum].author;
-  }
+  
 }

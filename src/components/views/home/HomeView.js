@@ -25,7 +25,7 @@ export class HomeView extends BaseComponent {
       "",
       "<span>artists quiz</span>"
     );
-    this.linkPainters.element.href = "#settings";
+    this.linkPainters.element.href = "#artists";
     this.imgPainters = new ImageElement(
       this.linkPainters.element,
       415,

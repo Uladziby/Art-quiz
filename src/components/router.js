@@ -1,6 +1,10 @@
 import { HomeView } from "./views/home/HomeView";
 import { PicturesView } from "./views/pictures/PicturesView";
 import { SettingsView } from "../components/views/settings/SettingsView";
+import { ArtistController } from "./views/ArtistPage/ArtistController";
+import { ArtistModel } from "./views/ArtistPage/ArtistModel";
+import { ArtistView } from "./views/ArtistPage/ArtistView";
+
 
 export class Router {
   constructor(parentElement) {
@@ -27,15 +31,9 @@ export class Router {
       {
         name: "#artists",
         component: () => {
-          return new SettingsView(this.parentElement);
+          return new ArtistController(new ArtistModel(), new ArtistView(this.parentElement));
         },
       },
-      /*  {
-        name: "#questions",
-        component: () => {
-          return new QuestionsView(this.parentElement);
-        },
-      }, */
     ];
   }
 

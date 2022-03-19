@@ -1,24 +1,8 @@
 import { BaseComponent } from "../../BaseComponent";
 import "./pictures.scss";
-import images from "../../../inputDate/images";
 import { CardElement } from "../../elements/cardElement/CardElement";
+import { arrCategories, SIZE_INPUT_ARRAY, NUMBER_QUESTIONS } from "./constants";
 
-const SIZE_INPUT_ARRAY = images.length;
-const NUMBER_QUESTIONS = 10;
-const arrCategories = [
-  "portrait",
-  "landscape",
-  "still life",
-  "impressionism",
-  "expressionism",
-  "avant-garde",
-  "renaissance",
-  "surrealism",
-  "kitsch",
-  "minimalism",
-  "set 11",
-  "set 12",
-];
 
 export class PicturesView extends BaseComponent {
   constructor(parentElement) {
@@ -39,6 +23,7 @@ export class PicturesView extends BaseComponent {
     );
     this.btnHome.element.addEventListener("click", () => {
       location.hash = "#home";
+      this.destroy();
     });
     this.titleHome = new BaseComponent(this.picturesHead.element, "span", [
       "pictures_head__title",
@@ -59,4 +44,5 @@ export class PicturesView extends BaseComponent {
       (item, index) => new CardElement(this.containerCategories, item, index)
     );
   }
+  
 }

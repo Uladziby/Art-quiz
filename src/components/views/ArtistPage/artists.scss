@@ -1,0 +1,45 @@
+@import '../../common.scss';
+
+.artists{
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    .artists_head{
+        display: flex;
+        justify-content: center;
+        &__btnHome{
+            @include btn-main;
+        }
+        &__btnHome:hover{
+            @include btn-main-hover;
+        }
+        &__btnScore{
+            @include btn-main;
+        }
+        &__btnScore:hover{
+            @include btn-main-hover;
+        }
+    }
+    .artists_categories{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.artists__timer{
+    justify-content: center;
+    padding:1rem;
+    &_time{
+      display: flex;
+      align-items: center; 
+      @include font-Monserat-24;
+      color : $color-main;
+      padding: 0 1rem;
+    }
+    &_img{
+      max-width: 6rem;
+    }
+  }

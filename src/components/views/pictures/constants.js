@@ -21,3 +21,4 @@ export const settings = {
   volume: 0,
   timer: true,
 };
+

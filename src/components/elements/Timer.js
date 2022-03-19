@@ -2,8 +2,6 @@ import { Popup } from "../views/popup/popupElement";
 
 const TIME_ROUND = 10;
 
-
-
 export class Timer {
   constructor(parentElement, counter = TIME_ROUND) {
     this.counter = counter;

@@ -1,27 +1,26 @@
 @import '../../common.scss';
 
-.artists{
+.artists {
     width: 100%;
     display: flex;
-    /* justify-content: center; */
     flex-direction: column;
-    .artists_head{
+    .artists_head {
         display: flex;
         justify-content: center;
-        &__btnHome{
+        &__btnHome {
             @include btn-main;
         }
-        &__btnHome:hover{
+        &__btnHome:hover {
             @include btn-main-hover;
         }
-        &__btnScore{
+        &__btnScore {
             @include btn-main;
         }
-        &__btnScore:hover{
+        &__btnScore:hover {
             @include btn-main-hover;
         }
     }
-    .artists_categories{
+    .artists_categories {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -29,17 +28,112 @@
     }
 }
 
-.artists__timer{
+.artists__timer {
     justify-content: center;
-    padding:1rem;
-    &_time{
-      display: flex;
-      align-items: center; 
-      @include font-Monserat-24;
-      color : $color-main;
-      padding: 0 1rem;
+    padding: 1rem;
+    &_time {
+        display: flex;
+        align-items: center;
+        @include font-Monserat-24;
+        color: $color-main;
+        padding: 0 1rem;
     }
-    &_img{
-      max-width: 6rem;
+    &_img {
+        max-width: 6rem;
     }
-  }
+}
+
+.artists {
+    &__timer {
+        justify-content: center;
+        padding: 1rem;
+        &_time {
+            display: flex;
+            align-items: center;
+            @include font-Monserat-24;
+            color: $color-main;
+            padding: 0 1rem;
+        }
+        &_img {
+            max-width: 6rem;
+        }
+    }
+    &_img {
+        transition: all 0.5s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &__img {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30vw;
+            border-radius: 2rem;
+        }
+        &__text {
+            @include font-Monserat-24;
+            color: $color-main;
+            display: flex;
+            justify-content: center;
+            padding: 1%;
+        }
+    }
+    &_block {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 2rem 20rem;
+        &__answer {
+            display: flex;
+            justify-content: center;
+            width: 48%;
+            @include font-Monserat-24;
+            color: $color-main;
+            cursor: pointer;
+            &:first-of-type {
+                border-bottom: 1px solid $color-main;
+                border-right: 1px solid $color-main;
+            }
+            &:nth-of-type(2) {
+                border-bottom: 1px solid $color-main;
+                border-left: 1px solid $color-main;
+            }
+            &:nth-of-type(3) {
+                border-right: 1px solid $color-main;
+                border-top: 1px solid $color-main;
+            }
+
+            &:last-of-type {
+                border-left: 1px solid $color-main;
+                border-top: 1px solid $color-main;
+            }
+        }
+        .answers__answer:first-of-type {
+            border-bottom: 1px solid $color-main;
+            border-right: 1px solid $color-main;
+        }
+        .answers__answer:nth-of-type(2) {
+            border-bottom: 1 px solid $color-main;
+            border-left: 1 px solid $color-main;
+        }
+        .answers__answer:nth-of-type(3) {
+            border-right: 1 px solid $color-main;
+            border-top: 1 px solid $color-main;
+        }
+
+        .answers__answer:last-of-type {
+            border-left: 1 px solid $color-main;
+            border-top: 1 px solid $color-main;
+        }
+    }
+}
+
+.true {
+    background-color: $color-answr-true;
+    color: white;
+}
+.false {
+    background-color: $color-answr-false;
+    color: white;
+}

@@ -10,7 +10,6 @@ export class ArtistModel{
         this.currentCategory = null;
         this.results = [];
         this.dataGame = null;
-        this.timer = null;
         this.arrAnswers = [];
         this.currentQuestion = 0;
 
@@ -34,4 +33,3 @@ export class ArtistModel{
         }
     }
 }
-//add listcats in view from model, next realize method chooseCategory

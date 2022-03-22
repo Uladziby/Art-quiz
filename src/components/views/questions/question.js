@@ -23,8 +23,8 @@ export class Question {
         this.status = false;
         this.numOfTruth = 0;
         this.options = { cb: this.nextQuestion.bind(this) };
-        this.popup = new Popup(this.appElem, this.options);
-        this.popup.dataQuestion = this.objRightAnsw[this.indexCurrentQuestion];
+        this.popup = new Popup(this.options);
+        this.popup.dataQuestion = null;
         this.btnHome = document.querySelector('.pictures_head__btnHome');
 
         //Timer
@@ -37,7 +37,6 @@ export class Question {
         this.timerImg.element.src = `${timerImg}`;
         this.timerNum = new BaseComponent(this.timerContainer.element, 'div', ['questions__timer_time']);
         this.Timer = new Timer(this.timerNum.element);
-        this.Timer.stop.bind(this);
 
         this.containerImg = new BaseComponent(this.parentElem, 'div', ['questions_img']);
         this.img = new BaseComponent(this.containerImg.element, 'img', ['questions_img__img']);
@@ -47,13 +46,9 @@ export class Question {
     }
 
     nextQuestion() {
-        window.addEventListener('change',()=>{
-            
-        })
+        
         if(location.hash!=='#pictures'){
-            this.Timer.stop();
             this.destroy();
-            this.popup.destroy();
         }
         if (this.indexCurrentQuestion === 10 ) {
             this.Timer.stop();
@@ -127,14 +122,10 @@ export class Question {
             if (this.indexCurrentQuestion < this.objRightAnsw.length) {
                 this.popup.init();
                 this.popup.show();
-
-                /*         new Popup(this.options, this.status);
-                 */
             }
         }, TIME_BETWEEN_QUESTIONS);
     }
     showPopup() {
-        this.activePopup(true);
         this.popup.dataQuestion = this.objRightAnsw[this.indexCurrentQuestion];
 
         this.popup.init();

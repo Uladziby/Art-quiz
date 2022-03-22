@@ -68,6 +68,7 @@ export class Popup extends BaseComponent {
   async getImage() {
     this.image.element.src = `${await getImage(this.data.imageNum)}`;
   }
+  
   hide() {
     this.element.remove();
   }

@@ -13,6 +13,5 @@ export function shuffleAnswers(answers) {
 }
 
 export function randomNumber() {
-  console.log(Math.floor(Math.random() * 120))
   return Math.floor(Math.random() * 120);
 }

@@ -17,24 +17,41 @@ export class ArtistController extends BaseComponent {
     handleChooseCategory(category) {
         this.model.setCurrentCategory(category);
         this.view.clearContainer();
-        this.view.displayTimer();
+        fetchQuestions(3).then((res) => {
+            this.model.dataGame = res;
+            this.nextQuestions();
 
-        this.model.dataGame = fetchQuestions(3).then((res) => {
-            console.log(res);
-            const i = this.model.currentQuestion;
-            this.model.arrAnswers.push(res[i].author);
-            this.model.createRandomAnswers().then(() => {
-                this.view.displayQuestions(this.model.arrAnswers);
-                this.model.fetchImage(res[i].imageNum).then((res) => {
-                    this.view.displayImg(res);
-                });
-            });
-
-            //отобраить вопросы
         });
-
-        this.model.timer = this.view.timer;
-        this.model.timer.start();
     }
-    handleAnswer(answer) {}
+    handleAnswer(answer) {
+        if (answer) {
+            this.view.timer.stop();
+            this.model.dataGame[this.model.currentQuestion].author === answer
+                ? this.model.results.push(true)
+                : this.model.results.push(false);
+               
+                this.view.showCorrectAnswer(this.model.results[this.model.currentQuestion])
+                setTimeout(()=>{
+                    this.model.currentQuestion += 1;
+                    this.view.clearPrevQuest();
+                    this.nextQuestions();
+                },1000)
+          
+        }
+    }
+
+    nextQuestions() {
+        this.model.arrAnswers = [];
+        this.model.arrAnswers.push(this.model.dataGame[this.model.currentQuestion].author);
+        this.model.createRandomAnswers().then(() => {
+            this.view.displayQuestions(this.model.arrAnswers);
+            this.model.fetchImage(this.model.dataGame[this.model.currentQuestion].imageNum).then((res) => {
+                this.view.displayImg(res);
+            });
+        });
+        this.view.timer.start();
+        if (this.model.currentQuestion === 9) {
+            console.log(this.model.results);
+        }
+    }
 }
